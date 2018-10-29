@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Montserrat+Subrayada|Raleway");
+#resume .btn, #resume .mainNavContainer .mainNav li, .mainNavContainer .mainNav #resume li {
+    font-size: 20px;
+    padding: 0; }
+
+
+* {
+    box-sizing: border-box; }
+
+*:before,
+*:after {
+    box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    color: #000;
+    background-color: #fff; }
+    body:before {
+        content: " ";
+        background-image: url(../images/bean.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        display: block;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: .25;
+        filter: blur(5px); }
+
+h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+    font-family: "Raleway", sans-serif;
+    color: #2185BF; }
+
+h3, h4, h5, h6 {
+    color: #0B2C40; }
+
+h1 {
+    border-bottom: 1px solid #2185BF; }
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s; }
+    a:hover {
+        text-decoration: underline;
+        color: #2185BF; }
+
+.main {
+    width: 100%;
+    padding: 150px 0; }
+
+.wrapper {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto; }
+
+.btn, .mainNavContainer .mainNav li {
+    font-size: 30px;
+    display: inline-block;
+    padding: 10px;
+    text-decoration: none; }
+    .btn i, .mainNavContainer .mainNav li i {
+        transition: transform 0.3s; }
+    .btn:hover, .mainNavContainer .mainNav li:hover {
+        text-decoration: none; }
+        .btn:hover i, .mainNavContainer .mainNav li:hover i {
+            transform: scale(1.11); }
+
+footer.mainFooter {
+    text-align: center;
+    padding: 30px;
+    border-bottom: 1px solid #2185BF; }
+
+article {
+    background: #fff;
+    padding: 20px;
+    margin: 30px 0;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2); }
+
+.mainNavContainer .topBar {
+    width: 100%;
+    background-color: #2185BF;
+    height: 100px;
+    position: fixed;
+    top: 0; }
+
+.mainNavContainer .logo {
+    font-family: "Montserrat Subrayada", sans-serif;
+    font-size: 40px;
+    color: white;
+    display: inline-block;
+    border: none;
+    cursor: default;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    left: 100px; }
+    .mainNavContainer .logo a:hover {
+        color: inherit; }
+
+.mainNavContainer .menuIcon {
+    font-size: 30px;
+    padding: 10px;
+    margin: 25px;
+    cursor: pointer;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: color 0.5s; }
+
+.mainNavContainer #menuToggle {
+    display: none;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0; }
+
+.mainNavContainer #menuToggle[type=checkbox]:checked ~ .menuIcon {
+    color: #2185BF; }
+
+.mainNavContainer #menuToggle[type=checkbox]:checked ~ .mainNav {
+    margin-left: 0;
+    overflow: hidden; }
+
+.mainNavContainer .mainNav {
+    width: 300px;
+    margin-left: -300px;
+    transition: margin-left 0.5s;
+    user-select: none;
+    background: rgba(0, 0, 0, 0.8);
+    min-height: 400px;
+    height: 100vh;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 100px; }
+    .mainNavContainer .mainNav li {
+        list-style: none;
+        margin-left: 30px;
+        padding: 10px;
+        display: block; }
+
+.externalLink:after {
+    content: "\f35d";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 10px;
+    margin: 10px;
+    vertical-align: text-top; }
+
+body::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5; }
+
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5; }
+
+body::-webkit-scrollbar-thumb {
+    background-color: #2185BF;
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent); }
+
+  </style>
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#2185BF">
+	<link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+	<link rel="stylesheet" href="assets/stylesheets/main.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	 crossorigin="anonymous">
+	<title>Damian Ortiz</title>
+</head>
+
+<body>
+	<div class="main">
+		<div class="wrapper">
+			<header>
+				<h1>Damian Ortiz</h1>
+			</header>
+			<section class="hero">
+				<article>
+					<header>
+						<h2>University of Illinois at chicago</h2>
+						<h2>IT 202</h2>
+					</header>
+					<p>
+						<a class="btn externalLink" href="https://github.com/dortiz36" target="_blank">
+							<i class="fab fa-github">
+							</i> |
+							<span>github</span>
+						</a>
+					</p>
+				</article>
+			</section>
+		</div>
+	</div>
+	<footer class="mainFooter">
+		<p>
+			Copyright
+			<i class="far fa-copyright"></i> 2018 Damian Ortiz
+		</p>
+	</footer>
+	<div class="mainNavContainer">
+		<div class="topBar"></div>
+		<input type="checkbox" id="menuToggle">
+		<label for="menuToggle" class="menuIcon">
+			<i class="fas fa-bars"></i>
+		</label>
+		<h1 class="logo"><a href="index.html">Online Profile</a></h1>
+		<nav class="mainNav">
+			<li>
+				<a href="index.html">Home</a>
+			</li>
+			<li>
+				<a href="project2.html">Project2</a>
+			</li>
+			<li>
+				<a href="lab5.html">Lab-5</a>
+			</li>
+			<li>
+				<a href="project2.html">Projects</a>
+			</li>
+			<li>
+				<a href="index.html">Contact</a>
+			</li>
+		</nav>
+	</div>
+	<script src="assets/javascripts/main.js"></script>
+</body>
+
+</html>

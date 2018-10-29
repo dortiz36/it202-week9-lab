@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Gamedev Canvas Workshop</title>
+            <style>
+                * { padding: 0; margin: 0; }
+                canvas { background: #eee; display: block; margin: 0 auto; }
+                </style>
+    </head>
+    <body style="background-color:black;">
+        
+        <canvas id="myCanvas" width="480" height="320"></canvas>
+        
+        <script>
+            var canvas = document.getElementById("myCanvas"); //obtain canvas
+            var ctx = canvas.getContext("2d");
+            var x = canvas.width/2;
+            var y = canvas.height-30;
+            var a = canvas.width/2;
+            var b = canvas.height-30;
+            var dx = 2;
+            var dy = -2;
+            var adx = 3;
+            var bdy = -3;
+            var ballRadius = 10;
+            var enemyBallRadius=5;
+            var paddleHeight = 10;
+            var paddleWidth = 75;
+            var paddleX = (canvas.width-paddleWidth)/2;
+            var rightPressed = false;
+            var leftPressed = false;
+            var score =0;
+            var level = 0;
+            var lives = 3;
+            
+            
+            
+            //Create the moving handler
+            document.addEventListener("keydown", keyDownHandler,false);
+            document.addEventListener("keyup",keyUpHandler,false);
+            document.addEventListener("mousemove", mouseMoveHandler, false);
+            
+            
+            
+            
+            //key handler functions
+            function keyDownHandler(e){
+                if(e.keyCode == 39){
+                    rightPressed = true;
+                }
+                else if(e.keyCode == 37){
+                    leftPressed = true;
+                }
+            }
+        
+        function keyUpHandler(e){
+            if(e.keyCode == 39){
+                rightPressed = false;
+            }
+            else if(e.keyCode == 37){
+                leftPressed = false;
+            }
+        }
+        
+        //Mouse handler
+        function mouseMoveHandler(e) {
+            var relativeX = e.clientX - canvas.offsetLeft;
+            if(relativeX > 0 && relativeX < canvas.width) {
+                paddleX = relativeX - paddleWidth/2;
+            }
+        }
+        
+        //Collision Detection
+        function collisionDetection(){
+            if(b + bdy > canvas.height-paddleHeight-enemyBallRadius) {
+                if(a > paddleX && a < paddleX + paddleWidth) {
+                    bdy = -bdy;
+                    score--;
+                }
+            }
+        }
+        
+        //Draw the good guy $$$
+        function drawBall(){
+            ctx.beginPath();
+            ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+            ctx.fillStyle = "green";
+            ctx.fill();
+            ctx.closePath();
+        }
+        
+        //Draw your weapon
+        function drawPaddle() {
+            ctx.beginPath();
+            ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+            ctx.fillStyle = "black";
+            ctx.fill();
+            ctx.closePath();
+        }
+        
+        //Draw the enemy
+        function drawEnemyBall(){
+            ctx.beginPath();
+            ctx.arc(a, b, enemyBallRadius, 0, Math.PI*2);
+            ctx.fillStyle = "red";
+            ctx.fill();
+            ctx.closePath();
+        }
+        
+        //Draw the Score
+        function drawScore() {
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#0095DD";
+            ctx.fillText("Score: "+score, 8, 20);
+        }
+        
+        //Draw amount of lives
+        function drawLevel() {
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#0095DD";
+            ctx.fillText("Level: "+level, 410, 20);
+        }
+        
+        function drawLives() {
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#0095DD";
+            ctx.fillText("Lives: "+lives, 220, 20);
+        }
+        
+        //function to draw everything
+        function draw(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            drawEnemyBall();
+            drawBall();
+            drawPaddle();
+            drawScore();
+            drawLives();
+            drawLevel();
+            
+            //if the score gets to 3 update the level of difficulty
+            if(score == 3) {
+                level++;
+                score = 0;
+                dx+=1;
+                dy-=1;
+                adx+=1;
+                bdy+=1;
+            }
+            //5 Levels and you win
+            if(level == 3){
+                alert("YOU WIN");
+                level=0;
+                document.location.reload();
+            }
+            
+            //if the good ball touches the top left or right wall bouce
+            if(x + dx > canvas.width-ballRadius || x + dx < ballRadius){
+                dx = -dx;
+            }
+            if(y + dy < ballRadius){
+                dy = -dy
+                //if it hits the paddle score increase
+            }else if(y + dy > canvas.height-ballRadius) {
+                if(x > paddleX && x < paddleX + paddleWidth) {
+                    dy = -dy;
+                    score++;
+                }//if it falls through game over
+                else {
+                    lives--;
+                    dy = -dy;
+                    if(lives==0){
+                        alert("GAME OVER");
+                        lives=3;
+                        document.location.reload();
+                    }
+                }
+            }
+            
+            //condition checks for the enemy ball
+            if(a + adx > canvas.width-enemyBallRadius || a + adx < enemyBallRadius) {
+                adx = -adx;
+            }
+            
+            if(b + bdy > canvas.height-enemyBallRadius || b + bdy < enemyBallRadius) {
+                bdy = -bdy;
+            }
+            //collision detection algorithm
+            collisionDetection();
+            
+            if(rightPressed && paddleX < canvas.width-paddleWidth) {
+                paddleX += 7;
+            }
+            else if(leftPressed && paddleX > 0) {
+                paddleX -= 7;
+            }
+            
+            
+            x += dx;
+            y += dy;
+            a += adx;
+            b += bdy;
+        }
+        
+        setInterval(draw,10);
+            </script>
+        
+    </body>
+</html>
